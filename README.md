@@ -35,11 +35,11 @@ My small mod of https://github.com/esphome/firmware/blob/main/voice-assistant/m5
 
 #### Assist pipelines
 
-![Home Assistant pipeline](conf/ha.png|width=100)
+![Home Assistant pipeline](conf/ha.png)
 
-![OpenAI Assistant pipeline](conf/oai.png|width=100)
+![OpenAI Assistant pipeline](conf/oai.png)
 
-![OpenAI model config](conf/oai_set.png|width=100)
+![OpenAI model config](conf/oai_set.png)
 
 #### scripts
 

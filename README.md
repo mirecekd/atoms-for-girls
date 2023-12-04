@@ -1,4 +1,4 @@
-#Atoms for Girls
+# Atoms for Girls
 
 This is integration of multiple projects around Home Assistant to achieve (from google long promised) assistant in czech language.
 

@@ -29,7 +29,7 @@ Check [this video](https://youtu.be/tYFCeJbJb4A) for A4G in action
 ## Configuration
 
 ### Atom Echo ESPhome configuration
-My small mod of https://github.com/esphome/firmware/blob/main/voice-assistant/m5stack-atom-echo.yaml find on [conf](conf) directory.
+My small mod of [m5stack-atom-echo.yaml](https://github.com/esphome/firmware/blob/main/voice-assistant/m5stack-atom-echo.yaml) find on [conf](conf) directory.
 
 ### Home Assistant configuration
 

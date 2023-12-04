@@ -1,0 +1,31 @@
+- id: '1700826334816'
+  alias: M5Stack Atom Echo Sekvence Asistenta
+  description: Změna Assist Asistenta na Atom Echo pracovna
+  trigger:
+  - platform: state
+    entity_id: select.m5stack_atom_echo_a07ff8_sekvence_asistenta
+  action:
+  - service: select.select_option
+    target:
+      entity_id: select.m5stack_atom_echo_a07ff8_sekvence_asistenta
+    data:
+      option: "{% if is_state('select.m5stack_atom_echo_a07ff8_sekvence_asistenta',
+        'Atom pracovna OAI OKNABU') %}\n  Atom pracovna HA OKNABU\n{% elif is_state('select.m5stack_atom_echo_a07ff8_sekvence_asistenta',
+        'Atom pracovna HA OKNABU') %}\n  Atom pracovna OAI OKNABU\n{% else %}\n  Atom
+        pracovna HA OKNABU\n{% endif %}\n"
+  mode: single
+- id: '1701012394663'
+  alias: Button - M5Stack Atom Echo pracovna - změň asistenta
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_button.zmen_asistenta_pracovna
+  condition: []
+  action:
+  - service: automation.trigger
+    data:
+      skip_condition: true
+    target:
+      entity_id: automation.m5stack_atom_echo_sekvence_asistenta
+  mode: single

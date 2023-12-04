@@ -1,0 +1,114 @@
+'1701303659169':
+  alias: Google Home Hub - Send TTS with Home Assistant logo
+  description: Script to send a TTS with picture and text to a player with screen
+  icon: mdi:cast-audio
+  mode: parallel
+  max: 20
+  sequence:
+  - alias: Version number
+    variables:
+      version: 2.0.1
+  - wait_for_trigger:
+    - platform: event
+      event_type: call_service
+      event_data:
+        domain: media_player
+        service: play_media
+        service_data:
+          media_content_type: music
+          entity_id: '{{ [ dummy_player ] }}'
+  - alias: Send TTS message with picture
+    service: media_player.play_media
+    target:
+      entity_id: '{{ target }}'
+    data:
+      media_content_id: '{{ wait.trigger.event.data.service_data.media_content_id
+        }}'
+      media_content_type: music
+      extra:
+        metadata:
+          metadataType: 3
+          title: '{{ large_text }}'
+          artist: '{{ small_text }}'
+          images:
+          - url: '{{ picture_url }}'
+'1701303678113':
+  alias: TTS HA
+  sequence:
+  - alias: Call the script with the additional data as script variables
+    service: script.turn_on
+    target:
+      entity_id: script.1701303659169
+    data:
+      variables:
+        dummy_player: media_player.vlc_telnet
+        target: media_player.ghub
+        large_text: Home Assistant
+        small_text: Assist od Home Assistanta
+        picture_url: https://cdn.icon-icons.com/icons2/2107/PNG/256/file_type_homeassistant_icon_130543.png
+  - alias: Send the TTS service call to the dummy player
+    service: tts.vlasta_say
+    target:
+      entity_id: media_player.vlc_telnet
+    data:
+      language: cs-CZ-VlastaNeural
+      message: '{{ messaz }}'
+  icon: mdi:food
+  mode: single
+'1701304108594':
+  alias: Google Home Hub - Send TTS with OpenAI logo
+  sequence:
+  - alias: Version number
+    variables:
+      version: 2.0.1
+  - wait_for_trigger:
+    - platform: event
+      event_type: call_service
+      event_data:
+        domain: media_player
+        service: play_media
+        service_data:
+          media_content_type: music
+          entity_id: '{{ [ dummy_player ] }}'
+  - alias: Send TTS message with picture
+    service: media_player.play_media
+    target:
+      entity_id: '{{ target }}'
+    data:
+      media_content_id: '{{ wait.trigger.event.data.service_data.media_content_id
+        }}'
+      media_content_type: music
+      extra:
+        metadata:
+          metadataType: 3
+          title: '{{ large_text }}'
+          artist: '{{ small_text }}'
+          images:
+          - url: '{{ picture_url }}'
+  description: Script to send a TTS with picture and text to a player with screen
+  icon: mdi:cast-audio
+  mode: parallel
+  max: 20
+'1701304114864':
+  alias: TTS OAI
+  sequence:
+  - alias: Call the script with the additional data as script variables
+    service: script.turn_on
+    target:
+      entity_id: script.1701304108594
+    data:
+      variables:
+        dummy_player: media_player.vlc_telnet
+        target: media_player.ghub
+        large_text: OpenAI
+        small_text: Assist od Home Assistanta
+        picture_url: https://ih1.redbubble.net/image.4697382397.4519/st,medium,507x507-pad,600x600,f8f8f8.jpg
+  - alias: Send the TTS service call to the dummy player
+    service: tts.tonda_say
+    target:
+      entity_id: media_player.vlc_telnet
+    data:
+      message: '{{ messaz }}'
+  icon: mdi:food
+  mode: single
+

@@ -1,4 +1,6 @@
-# Atoms for Girls
+# Atoms for Girls v1
+
+[Go to version 2](READMEv2.md)
 
 This is integration of multiple projects around Home Assistant to achieve (from google long promised) assistant in czech language.
 

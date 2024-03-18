@@ -45,6 +45,3 @@ My small mod of [m5stack-atom-echo2.yaml](https://github.com/esphome/firmware/bl
 
 on [conf](conf/scripts2.yaml) directory.
 
-#### automations
-
-on [conf](conf/automations2.yaml) directory.

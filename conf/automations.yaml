@@ -1,31 +1,83 @@
-- id: '1700826334816'
-  alias: M5Stack Atom Echo Sekvence Asistenta
-  description: Změna Assist Asistenta na Atom Echo pracovna
-  trigger:
-  - platform: state
-    entity_id: select.m5stack_atom_echo_a07ff8_sekvence_asistenta
-  action:
-  - service: select.select_option
-    target:
-      entity_id: select.m5stack_atom_echo_a07ff8_sekvence_asistenta
-    data:
-      option: "{% if is_state('select.m5stack_atom_echo_a07ff8_sekvence_asistenta',
-        'Atom pracovna OAI OKNABU') %}\n  Atom pracovna HA OKNABU\n{% elif is_state('select.m5stack_atom_echo_a07ff8_sekvence_asistenta',
-        'Atom pracovna HA OKNABU') %}\n  Atom pracovna OAI OKNABU\n{% else %}\n  Atom
-        pracovna HA OKNABU\n{% endif %}\n"
-  mode: single
-- id: '1701012394663'
-  alias: Button - M5Stack Atom Echo pracovna - změň asistenta
-  description: ''
-  trigger:
+--- 
+alias: "Pracovna - Google Home přehrává - vypni wakeword "
+description: ""
+trigger:
   - platform: state
     entity_id:
-    - input_button.zmen_asistenta_pracovna
-  condition: []
-  action:
-  - service: automation.trigger
-    data:
-      skip_condition: true
+      - media_player.ghub
+    to: playing
+condition: []
+action:
+  - service: switch.turn_off
+    metadata: {}
+    data: {}
     target:
-      entity_id: automation.m5stack_atom_echo_sekvence_asistenta
-  mode: single
+      entity_id: switch.m5stack_atom_echo_a07ff8_use_wake_word
+mode: single
+---
+alias: "Pracovna - Google Home nepřehrává - zapni wakeword "
+description: ""
+trigger:
+  - platform: state
+    entity_id:
+      - media_player.ghub
+    from: playing
+condition: []
+action:
+  - if:
+      - condition: state
+        entity_id: switch.m5stack_atom_echo_a07ff8_continuous_assistance
+        state: "on"
+    then:
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 2
+          milliseconds: 0
+      - service: button.press
+        metadata: {}
+        data: {}
+        target:
+          entity_id: button.m5stack_atom_echo_a07ff8_ptt
+    else:
+      - service: switch.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.m5stack_atom_echo_a07ff8_use_wake_word
+mode: single
+---
+alias: "Pracovna - Google Home nepřehrává ani neasistuje - zapni wakeword "
+description: ""
+trigger:
+  - platform: state
+    entity_id:
+      - binary_sensor.m5stack_atom_echo_a07ff8_asistence_probiha
+      - media_player.ghub
+    to: "off"
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+condition:
+  - condition: state
+    entity_id: binary_sensor.m5stack_atom_echo_a07ff8_asistence_probiha
+    state: "off"
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+  - condition: state
+    entity_id: media_player.ghub
+    state: "off"
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+action:
+  - service: switch.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.m5stack_atom_echo_a07ff8_use_wake_word
+mode: single

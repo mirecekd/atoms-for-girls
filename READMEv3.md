@@ -21,14 +21,14 @@ Check [this video](https://www.youtube.com/watch?v=KVIsx4GAFxk) for A4Gv3 in act
 - [ESPhome](https://esphome.io/) (installed on [M5Stack Atom Echo](https://rpishop.cz/bloky/4379-m5stack-atom-echo-vyvojova-sada-pro-chytry-reproduktor.html))
 - [OpenWakeWord](https://github.com/dscripka/openWakeWord) (for "OK Nabu" wake word)
 - Home Assistant TTS & STS
-- OpenAI conversation gpt-3.5-turbo
+- OpenAI conversation gpt-4o
 - [extended_openai_conversation](https://github.com/jekalmin/extended_openai_conversation)
 
 
 ## Configuration
 
 ### Atom Echo ESPhome configuration
-My small mod of [m5stack-atom-echo2.yaml](https://github.com/esphome/firmware/blob/main/voice-assistant/m5stack-atom-echo2.yaml) find on [conf](conf) directory.
+My small mod of [m5stack-atom-echo2.yaml](https://github.com/esphome/firmware/blob/main/voice-assistant/m5stack-atom-echo3.yaml) find on [conf](conf) directory.
 
 ### Home Assistant configuration
 
@@ -44,4 +44,9 @@ My small mod of [m5stack-atom-echo2.yaml](https://github.com/esphome/firmware/bl
 #### scripts
 
 on [conf](conf/scripts2.yaml) directory.
+
+
+#### automations
+
+on [conf](conf/automations.yaml) directory.
 
